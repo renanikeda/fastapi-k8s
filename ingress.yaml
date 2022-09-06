@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: admin-helm-web-base
+  namespace: dev
+  labels:
+    app.kubernetes.io/instance: admin
+spec:
+  rules:
+  - host: admin-127-0-0-1.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: admin-svc
+            port:
+              number: 3002
+        path: /
+        pathType: Prefix
